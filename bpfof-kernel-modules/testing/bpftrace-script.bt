@@ -1,0 +1,25 @@
+#include <linux/fs.h>
+#include <linux/bio.h>
+#include <linux/blkdev.h>
+#include <linux/blk-mq.h>
+#include <linux/nvme.h>
+
+// kprobe:nvmet_bio_done
+// {
+//     printf("%d\n", ((struct bio *) arg0)->bi_iter.bi_idx);
+// }
+
+kprobe:nvme_tcp_queue_rq
+{
+    printf("Inode: %lu\n\n", ((struct request *) arg1)->bio->xrp_inode->i_ino);
+    // printf("Inode: %lu", ((struct blk_mq_queue_data *) arg1)->rq->bio->xrp_inode->i_ino);
+}
+
+// kprobe:nvme_tcp_try_send_data
+// {
+//     printf("Reached function %s\n", func);
+//     printf("Req: %llu\n", ((struct nvme_request *) arg0));
+//     printf("Cmd: %llu\n", ((struct nvme_request *) arg0)->cmd);
+//     printf("Opcode: %x", ((struct nvme_request *) arg0)->cmd->rw.opcode);
+//     printf("\n\n");
+// }
