@@ -1,7 +1,7 @@
 # BPF-oF: Storage Function Pushdown Over the Network
 
 This repository contains source code and instructions to reproduce key results
-in the BPF-oF paper ([todo-arxiv-link](link)). A draft of the paper is added to
+in the BPF-oF paper ([arxiv](https://arxiv.org/abs/2312.06808)). A draft of the paper is added to
 this repository.
 
 ## Dependencies
